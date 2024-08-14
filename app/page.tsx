@@ -1,4 +1,5 @@
 import { Courier_Prime } from 'next/font/google';
+import BlogCard from './components/BlogCard';
 
 const courier = Courier_Prime({
   subsets: ['latin'],
@@ -33,8 +34,13 @@ export default function Home() {
       </section>
       <hr className='border-black'/>
 
-      <section>
+      <section className='flex flex-col space-y-4'>
         <h1 className='font-bold text-xl'>Blog</h1>
+        <BlogCard
+          title={'How to live forever'}
+          desc={'On legacy, identity, and how to impact others blaaslkdfja;lsdkjfalksdjf'}
+          date={'08/14/2001'} 
+        />
       </section>
     </main>
   );
