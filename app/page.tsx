@@ -34,7 +34,7 @@ export default function Home() {
       </section>
       <hr className='border-black'/>
 
-      <section className='flex flex-col space-y-4'>
+      <section className='flex flex-col space-y-2'>
         <h1 className='font-bold text-xl'>Blog</h1>
         <BlogCard
           title={'How to live forever'}
