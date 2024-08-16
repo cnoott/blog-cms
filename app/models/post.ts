@@ -28,3 +28,5 @@ Post.init(
     modelName: 'Post',
   },
 );
+
+export default Post;
