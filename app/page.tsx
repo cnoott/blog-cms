@@ -8,9 +8,7 @@ const courier = Courier_Prime({
 
 export default function Home() {
   return (
-    <main className='flex flex-col space-y-6 max-w-xl ml-auto mr-auto mt-10'>
-      <h1 className='text-4xl underline font-bold'>liamamad.io</h1>
-
+    <>
       <section>
         <h1 className='text-xl font-bold'>Hey, my name is Liam Amadio.</h1>
 
@@ -42,6 +40,6 @@ export default function Home() {
           date={'08/14/2001'} 
         />
       </section>
-    </main>
+    </>
   );
 }
