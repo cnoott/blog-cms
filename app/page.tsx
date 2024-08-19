@@ -1,12 +1,15 @@
 import { Courier_Prime } from 'next/font/google';
 import BlogCard from './components/BlogCard';
+import { Post } from './models';
 
 const courier = Courier_Prime({
   subsets: ['latin'],
   weight: '400',
 });
 
-export default function Home() {
+export default async function Home() {
+  const allPosts = await Post.findAll();
+
   return (
     <>
       <section>
@@ -34,11 +37,16 @@ export default function Home() {
 
       <section className='flex flex-col space-y-2'>
         <h1 className='font-bold text-xl'>Blog</h1>
-        <BlogCard
-          title={'How to live forever'}
-          desc={'On legacy, identity, and how to impact others blaaslkdfja;lsdkjfalksdjf'}
-          date={'08/14/2001'} 
-        />
+        {JSON.stringify(allPosts)}
+
+        {allPosts.map((post, i) => (
+          <BlogCard
+            title={post.title}
+            desc={''}
+            date={'08/14/2001'} 
+          />
+
+        ))}
       </section>
     </>
   );

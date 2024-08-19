@@ -29,7 +29,8 @@ export async function createPost(formData: FormData) {
     console.log('Post Created!', newPost);
   } catch (e) {
     console.log('Error creating new post in db: ', e);
+    return { errors: 'Error creating post in db' };
   }
 
-  return { success: true, message: `Blog post "${title}" created!` };
+  return { success: true, message: `Blog post "${title}" "${desc}" created!` };
 }
