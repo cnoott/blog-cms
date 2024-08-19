@@ -1,11 +1,11 @@
 export interface BlogCardProps {
   title: string;
   desc: string;
-  date: string;
+  date: Date;
 }
 
 export interface BlogProps {
   title: string;
-  date: string;
+  date: Date;
   content: string;
 }
