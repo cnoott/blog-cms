@@ -1,7 +1,19 @@
-import { DataTypes, Model } from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from 'sequelize';
 import sequelize from '../config/database';
 
-export class Post extends Model {};
+export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
+  declare id: CreationOptional<number>;
+  declare title: string;
+  declare desc: string;
+  declare content?: string;
+  declare date: Date;
+}
 
 Post.init(
   {
