@@ -1,6 +1,7 @@
 import { Courier_Prime } from 'next/font/google';
 import BlogCard from './components/BlogCard';
 import { Post } from './models';
+import {BlogCardProps} from './types';
 
 const courier = Courier_Prime({
   subsets: ['latin'],
@@ -37,15 +38,14 @@ export default async function Home() {
 
       <section className='flex flex-col space-y-2'>
         <h1 className='font-bold text-xl'>Blog</h1>
-        {JSON.stringify(allPosts)}
 
-        {allPosts.map((post, i) => (
+        {allPosts.map((post: Post, i) => (
           <BlogCard
+            key={i}
             title={post.title}
-            desc={''}
-            date={'08/14/2001'} 
+            desc={post.desc}
+            date={post.date} 
           />
-
         ))}
       </section>
     </>
