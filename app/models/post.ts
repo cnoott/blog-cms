@@ -4,7 +4,9 @@ import {
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
+  ForeignKey,
 } from 'sequelize';
+import { User } from './';
 import sequelize from '../config/database';
 
 export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
@@ -13,6 +15,7 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
   declare desc: string;
   declare content?: string;
   declare date: Date;
+  declare userId: ForeignKey<User['id']>;
 }
 
 Post.init(
@@ -38,11 +41,24 @@ Post.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
     modelName: 'Post',
   },
 );
+
+Post.belongsTo(User, {
+  targetKey: 'id',
+  foreignKey: 'userId',
+  as: 'user',
+});
 
 export default Post;
