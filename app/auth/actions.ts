@@ -2,6 +2,7 @@
 import { format } from 'path';
 import { User } from '../models';
 import { z } from 'zod';
+import { generateToken } from '../utils/jwt';
 
 const newUserSchema = z.object({
   name: z.string().min(1, 'Username is required'),
@@ -26,13 +27,20 @@ export async function createUser(formData: FormData) {
     return { errors: { general: 'Incorrect Super Secret Pass! (Are you supposed to be here?)'} };
   }
   
+  let newUser;
   try {
-    const newUser = await User.create({name, password});
+    newUser = await User.create({name, password});
     console.log('User created!');
   } catch (e) {
     console.log('Error creating new user');
     return {errors: { general: 'Error creating new user' } };
   }
 
-  return {success: true, message: `New User ${name} Created!`};
+  const token = generateToken({id: newUser.id, name: newUser.name});
+
+  return {success: true, message: `New User ${name} Created!`, token: token};
+}
+
+export async function login(formData: FormData) {
+  
 }
