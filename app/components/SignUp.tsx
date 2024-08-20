@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { createUser } from '../auth/actions';
 import { AuthResult } from '../types';
 import { useAuth } from '../context';
+import Link  from 'next/link';
 
 export default function SignUpForm() {
   const [state, setState] = useState<AuthResult>({});
-  const { login } = useAuth();
+  const { login, logout, user } = useAuth();
 
   async function handleSubmit(formData: FormData) {
     const result: AuthResult = await createUser(formData);
@@ -14,6 +15,18 @@ export default function SignUpForm() {
     if (result.token) {
       login(result.token);
     }
+  }
+
+  if (user) {
+    return (
+      <div>
+        <p>Logged in as: {user?.name}</p>
+        <button
+          className='font-bold w-15 mt-5'
+          onClick={logout}
+        >Log Out</button>
+      </div>
+    );
   }
 
   return (
@@ -79,6 +92,11 @@ export default function SignUpForm() {
         >
           Sign in
         </button>
+      </div>
+      <div>
+        <Link href='/auth/login'>
+          <p className='mt-5 text-indigo-600 font-bold'>Or Login</p>
+        </Link>
       </div>
     </form>
   );
