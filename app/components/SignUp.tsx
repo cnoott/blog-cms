@@ -1,17 +1,23 @@
 'use client';
 import { useState } from 'react';
 import { createUser } from '../auth/actions';
+import { AuthResult } from '../types';
+import { useAuth } from '../context';
 
 export default function SignUpForm() {
-  const [state, setState] = useState<{ message?: string; errors?: any }>({});
+  const [state, setState] = useState<AuthResult>({});
+  const { login } = useAuth();
 
   async function handleSubmit(formData: FormData) {
-    const result = await createUser(formData);
+    const result: AuthResult = await createUser(formData);
     setState(result);
+    if (result.token) {
+      login(result.token);
+    }
   }
 
   return (
-    <form action={handleSubmit} className='w-1/2 '>
+    <form action={handleSubmit} className='w-1/2'>
       {state.message && <p className='text-green-600'>{state.message}</p>}
       {state?.errors?.general && <p className='text-red-600'>{state?.errors?.general}</p>}
       <div>
