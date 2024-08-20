@@ -6,7 +6,7 @@ import {
   CreationOptional,
   ForeignKey,
 } from 'sequelize';
-import { User } from './';
+import { User } from './user';
 import sequelize from '../config/database';
 
 export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
@@ -54,11 +54,5 @@ Post.init(
     modelName: 'Post',
   },
 );
-
-Post.belongsTo(User, {
-  targetKey: 'id',
-  foreignKey: 'userId',
-  as: 'user',
-});
 
 export default Post;

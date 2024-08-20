@@ -7,14 +7,11 @@ import {
 } from 'sequelize';
 import sequelize from '../config/database';
 import bcrypt from 'bcryptjs';
-import { Post } from './';
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare password: string;
-
-//declare posts: string[];
 
   public checkPassword(password: string): boolean {
     return bcrypt.compareSync(password, this.password);
@@ -44,11 +41,5 @@ User.init(
     modelName: 'User',
   },
 );
-
-User.hasMany(Post, {
-  sourceKey: 'id',
-  foreignKey: 'userId',
-  as: 'posts',
-});
 
 export default User;
