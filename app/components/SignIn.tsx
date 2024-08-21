@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { AuthResult } from '../types';
-import { loginUser } from '../auth/actions';
+import { loginUser } from '../(site)/auth/actions';
 import { useAuth } from '../context';
 
 export default function SignInForm() {

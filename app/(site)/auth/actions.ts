@@ -1,8 +1,8 @@
 'use server';
 import { format } from 'path';
-import { User } from '../models';
+import { User } from '../../models';
 import { z } from 'zod';
-import { generateToken } from '../utils/jwt';
+import { generateToken } from '../../utils/jwt';
 
 const userSchema = z.object({
   name: z.string().min(1, 'Username is required'),

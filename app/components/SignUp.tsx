@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { createUser } from '../auth/actions';
+import { createUser } from '../(site)/auth/actions';
 import { AuthResult } from '../types';
 import { useAuth } from '../context';
 import Link  from 'next/link';
