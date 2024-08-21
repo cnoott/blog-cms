@@ -18,6 +18,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { usePathname } from 'next/navigation';
+import { useAuth } from '../context';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -34,6 +35,8 @@ export default function DashboardLayout({
     { name: 'Posts', href: '/dashboard', icon: HomeIcon, current: pathname === '/dashboard' },
     { name: 'Images', href: '/dashboard/images', icon: CameraIcon, current: pathname === '/dashboard/images' },
   ];
+
+  const { user, logout} = useAuth();
 
   return (
     <>
@@ -138,13 +141,8 @@ export default function DashboardLayout({
                     href="#"
                     className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
                   >
-                    <img
-                      alt=""
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      className="h-8 w-8 rounded-full bg-gray-50"
-                    />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Tom Cook</span>
+                    <p className='flex'>{user?.name}  <button className='ml-2 font-bold' onClick={logout}> (logout)</button></p>
                   </a>
                 </li>
               </ul>
@@ -158,14 +156,8 @@ export default function DashboardLayout({
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
           <div className="flex-1 text-sm font-semibold leading-6 text-gray-900">Dashboard</div>
-          <a href="#">
             <span className="sr-only">Your profile</span>
-            <img
-              alt=""
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              className="h-8 w-8 rounded-full bg-gray-50"
-            />
-          </a>
+            <p className='flex'>{user?.name}  <button className='ml-2 font-bold' onClick={logout}> (logout)</button></p>
         </div>
 
         <main className="py-10 lg:pl-72">
