@@ -3,6 +3,7 @@ import { format } from 'path';
 import { User } from '../../models';
 import { z } from 'zod';
 import { generateToken } from '../../utils/jwt';
+import { cookies } from 'next/headers';
 
 const userSchema = z.object({
   name: z.string().min(1, 'Username is required'),
@@ -37,6 +38,7 @@ export async function createUser(formData: FormData) {
   }
 
   const token = generateToken({id: newUser.id, name: newUser.name});
+  cookies().set('auth-token', token);
 
   return {success: true, message: `New User ${name} Created!`, token: token};
 }
@@ -65,7 +67,11 @@ export async function loginUser(formData: FormData) {
     return { errors: { general: 'Incorrect username or password'} };
   }
   const token = generateToken({id: user.id, name: user.name});
+  cookies().set('auth-token', token);
 
   return {success: true, message: `${name} Logged In!`, token: token};
+}
 
+export async function logoutUser() {
+  cookies().delete('auth-token');
 }
