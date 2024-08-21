@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Link from 'next/link';
-import { AuthProvider } from '../context';
 
 import { useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, TransitionChild } from '@headlessui/react'
@@ -253,9 +252,7 @@ export default function DashboardLayout({
 
         <main className="py-10 lg:pl-72">
           <div className="px-4 sm:px-6 lg:px-8">
-            <AuthProvider>
-              {children}
-            </AuthProvider>
+            {children}
           </div>
         </main>
       </div>

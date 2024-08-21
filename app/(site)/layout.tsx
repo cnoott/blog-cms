@@ -1,5 +1,5 @@
 import { AuthProvider } from '../context';
-import Link from 'next/link';
+import Logo from '../components/Logo';
 
 export default function SiteLayout({
   children,
@@ -9,9 +9,7 @@ export default function SiteLayout({
   return(
     <div
         className='flex flex-col space-y-6 max-w-xl ml-auto mr-auto mt-8 h-full'>
-        <Link href='/'>
-          <h1 className='text-4xl underline font-bold'>liamamad.io</h1>
-        </Link>
+      <Logo />
         {children}
     </div>
   );
