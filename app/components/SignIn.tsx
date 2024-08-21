@@ -3,16 +3,19 @@ import { useState } from 'react';
 import { AuthResult } from '../types';
 import { loginUser } from '../(site)/auth/actions';
 import { useAuth } from '../context';
+import { useRouter } from 'next/navigation';
 
 export default function SignInForm() {
   const [state, setState] = useState<AuthResult>({});
   const { login, logout, user } = useAuth();
+  const router = useRouter();
 
   async function handleSubmit(formData: FormData) {
     const result: AuthResult = await loginUser(formData);
     setState(result);
     if (result.token) {
       login(result.token);
+      router.push('/dashboard');
     }
   }
 
