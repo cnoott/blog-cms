@@ -3,8 +3,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { UserType } from '../models';
-
-// use User type
+import { logoutUser } from '../(site)/auth/actions';
 
 const AuthContext = createContext<UserType>(null);
 
@@ -36,7 +35,8 @@ export const AuthProvider = ({ children } : {
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem('token');
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    logoutUser();
   };
 
   return (
