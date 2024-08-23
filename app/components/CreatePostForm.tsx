@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { createPost } from '../create-post/actions';
+import { createPost } from '../dashboard/create-post/actions';
 
 export default function CreatePostForm() {
   const [state, setState] = useState<{ message?: string; errors?: any }>({});
