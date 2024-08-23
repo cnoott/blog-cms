@@ -14,6 +14,7 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
   declare title: string;
   declare desc: string;
   declare content?: string;
+  declare isPublished?: boolean;
   declare date: Date;
   declare userId: ForeignKey<User['id']>;
 }
@@ -36,6 +37,11 @@ Post.init(
     content: {
       type: DataTypes.TEXT,
       allowNull: true,
+    },
+    isPublished: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     date: {
       type: DataTypes.DATE,
