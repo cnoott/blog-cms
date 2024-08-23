@@ -1,7 +1,7 @@
 import { Courier_Prime } from 'next/font/google';
 import BlogCard from '../components/BlogCard';
 import { Post } from '../models';
-import {BlogCardProps} from '../types';
+import { BlogCardProps } from '../types';
 
 const courier = Courier_Prime({
   subsets: ['latin'],
