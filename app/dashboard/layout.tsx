@@ -32,7 +32,12 @@ export default function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const pathname = usePathname();
   const navigation = [
-    { name: 'Posts', href: '/dashboard', icon: HomeIcon, current: pathname === '/dashboard' },
+    {
+      name: 'Posts',
+      href: '/dashboard',
+      icon: HomeIcon,
+      current: pathname === '/dashboard' || pathname === '/dashboard/create-post',
+    },
     { name: 'Images', href: '/dashboard/images', icon: CameraIcon, current: pathname === '/dashboard/images' },
   ];
 
